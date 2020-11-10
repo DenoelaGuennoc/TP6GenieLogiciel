@@ -9,7 +9,7 @@ public class Representant {
 	private String adresse;
 	private float salaireFixe;
         private ZoneGeographique zoneRepresentant;
-        private HashMap<Integer, Float> CAMensuel; //archive des CA sur les 12 derniers mois
+        private HashMap<Integer, Float> CAMensuel = new HashMap<Integer, Float>(); //archive des CA sur les 12 derniers mois
 
 	public Representant(int numero, String nom, String prenom, ZoneGeographique secteur) {
 		this.numero = numero;
