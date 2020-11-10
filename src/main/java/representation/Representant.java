@@ -58,6 +58,13 @@ public class Representant {
 		//throw new UnsupportedOperationException("Pas encore implémenté");
 	}
 
+        //Vérifie la validité du paramètre mois (0 <= mois <= 11)
+        public void checkMois(int mois){
+            if (mois < 0 || mois > 11) {
+                throw new IllegalArgumentException("Le mois doit être compris entre 0 et 11 (0 = janvier)");
+            }
+        }
+        
 	/**
 	 * Enregistre le CA de ce représentant pour un mois donné. 
 	 * @param mois le numéro du mois (de 0 à 11)
@@ -65,9 +72,7 @@ public class Representant {
 	 **/
 	public void enregistrerCA(int mois, float montant) {
 		// vérifier les paramètres
-		if (mois < 0 || mois > 11) {
-			throw new IllegalArgumentException("Le mois doit être compris entre 0 et 11 (0 = janvier)");
-		}
+		checkMois(mois);
 		if (montant < 0) {
 			throw new IllegalArgumentException("Le montant doit être positif ou null");
 		}
@@ -85,9 +90,7 @@ public class Representant {
 	public float salaireMensuel(int mois, float pourcentage) {
 		// TODO: Implémenter cette méthode
 		//throw new UnsupportedOperationException("Pas encore implémenté");
-                if (mois < 0 || mois > 11) {
-			throw new IllegalArgumentException("Le mois doit être compris entre 0 et 11 (0 = janvier)");
-		}
+                checkMois(mois);
                 if (pourcentage < 0 || pourcentage > 1){
                     throw new IllegalArgumentException("Le pourcentage doit être compris en 0 et 1 (1=100%)");
                 }

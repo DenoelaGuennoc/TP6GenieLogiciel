@@ -1,5 +1,6 @@
 package representation;
 
+import java.util.HashMap;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
 import org.junit.jupiter.api.BeforeEach;
@@ -88,7 +89,7 @@ public class TestRepresentant {
             try {
                 //On donne un mois négatif
                 //On s'attend à une exception
-                r.enregistrerCA(-3, 1000);
+                r.checkMois(-3);
                 fail("Un mois négatif doit gérérer une exception");
             }
             catch (IllegalArgumentException e) {
@@ -100,7 +101,7 @@ public class TestRepresentant {
             try {
                 //On donne un mois >11
                 //On s'attend à une exception
-                r.enregistrerCA(15, 1000);
+                r.checkMois(15);
                 fail("Un mois supérieur à 11 doit gérérer une exception");
             }
             catch (IllegalArgumentException e) {
@@ -131,4 +132,45 @@ public class TestRepresentant {
             }
         }
         
+        @Test
+        public void testToString() {
+            String attendu = "Representant{numero=36, nom=Bastide, prenom=Rémi}";
+            assertEquals(attendu, r.toString());
+        }
+        
+        @Test
+        public void testGetNumero() {
+            assertEquals(36, r.getNumero(), "getNumero() ne retourne pas le bon numéro de représentant");
+        }
+        
+        @Test
+        public void testGetNom() {
+            assertEquals("Bastide", r.getNom(), "getNom() ne retourne pas le bon nom de représentant");
+        }
+        
+        @Test
+        public void testGetPrenom() {
+            assertEquals("Rémi", r.getPrenom(), "getPrenom() ne retourne pas le bon prénom de représentant");
+        }
+        
+        @Test
+        public void testGetSalaireFixe() {
+            assertEquals(FIXE_BASTIDE, r.getSalaireFixe(), "getSalaireFixe() ne retourne pas le bon salaire fixe de représentant");
+        }
+        
+        @Test
+        public void testGetSecteur() {
+            assertEquals(occitanie, r.getSecteur(), "getSecteur() ne retourne pas le bon secteur pour le représentant");
+        }
+        
+        @Test
+        public void testSetSecteur() {
+            //création d'un nouveau secteur
+            ZoneGeographique bretagne = new ZoneGeographique(29, "Bretagne");
+            //attribution du nouveau secteur au représentant
+            r.setSecteur(bretagne);
+            
+            assertEquals(bretagne, r.getSecteur(), "Le secteur n'a pas été mis à jour par setSecteur(newSecteur)");
+            
+        }
 }
