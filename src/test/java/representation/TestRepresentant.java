@@ -173,4 +173,14 @@ public class TestRepresentant {
             assertEquals(bretagne, r.getSecteur(), "Le secteur n'a pas été mis à jour par setSecteur(newSecteur)");
             
         }
+        
+        @Test
+        public void testSetGetAdresse() {
+            //attribution d'une nouvelle adresse au représentant
+            r.setAdresse("1 rue de chez moi");
+            
+            assertEquals("1 rue de chez moi", r.getAdresse(), "getAdresse() ou setAdresse() ne retourne pas la bonne adresse pour le représentant");
+            //Si l'adresse retournée est la bonne c'est quelle a bien été modifiée par setAdresse
+            //et quelle est bien retournée par getAdresse.
+        }
 }
