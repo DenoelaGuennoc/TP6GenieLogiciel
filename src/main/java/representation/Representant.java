@@ -1,4 +1,5 @@
 package representation;
+import java.util.*;
 
 public class Representant {
 
@@ -7,8 +8,8 @@ public class Representant {
 	private final String prenom;
 	private String adresse;
 	private float salaireFixe;
-        //private float CAMensuel;
         private ZoneGeographique zoneRepresentant;
+        private HashMap CAMensuel; //archive des CA sur les 12 derniers mois
 
 	public Representant(int numero, String nom, String prenom, ZoneGeographique secteur) {
 		this.numero = numero;
@@ -71,7 +72,8 @@ public class Representant {
 			throw new IllegalArgumentException("Le montant doit être positif ou null");
 		}
 		// TODO: Implémenter cette méthode
-		throw new UnsupportedOperationException("Pas encore implémenté");
+                //throw new UnsupportedOperationException("Pas encore implémenté");
+                this.CAMensuel.put(mois, montant);
 	}
 
 	/**
