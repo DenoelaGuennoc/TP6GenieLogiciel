@@ -92,7 +92,7 @@ public class Representant {
                     throw new IllegalArgumentException("Le pourcentage doit être compris en 0 et 1 (1=100%)");
                 }
                 // Calcul du salaire mensuel = salaire fixe + pourcentage du CA + indemnité repas
-                float sMensuel = this.salaireFixe + pourcentage * this.CAMensuel.get(mois) + this.zoneRepresentant.getIndemniteRepas();
+                float sMensuel = this.salaireFixe + pourcentage * this.CAMensuel.getOrDefault(mois, 0f) + this.zoneRepresentant.getIndemniteRepas();
                 return sMensuel;
 	}
 
