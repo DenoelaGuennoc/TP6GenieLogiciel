@@ -9,7 +9,7 @@ public class Representant {
 	private String adresse;
 	private float salaireFixe;
         private ZoneGeographique zoneRepresentant;
-        private HashMap CAMensuel; //archive des CA sur les 12 derniers mois
+        private HashMap<Integer, Float> CAMensuel; //archive des CA sur les 12 derniers mois
 
 	public Representant(int numero, String nom, String prenom, ZoneGeographique secteur) {
 		this.numero = numero;
@@ -66,7 +66,7 @@ public class Representant {
 	public void enregistrerCA(int mois, float montant) {
 		// vérifier les paramètres
 		if (mois < 0 || mois > 11) {
-			throw new IllegalArgumentException("Le mois doit être compris entre 0 et 11");
+			throw new IllegalArgumentException("Le mois doit être compris entre 0 et 11 (0 = janvier)");
 		}
 		if (montant < 0) {
 			throw new IllegalArgumentException("Le montant doit être positif ou null");
@@ -84,7 +84,16 @@ public class Representant {
 	 */
 	public float salaireMensuel(int mois, float pourcentage) {
 		// TODO: Implémenter cette méthode
-		throw new UnsupportedOperationException("Pas encore implémenté");
+		//throw new UnsupportedOperationException("Pas encore implémenté");
+                if (mois < 0 || mois > 11) {
+			throw new IllegalArgumentException("Le mois doit être compris entre 0 et 11 (0 = janvier)");
+		}
+                if (pourcentage < 0 || pourcentage > 1){
+                    throw new IllegalArgumentException("Le pourcentage doit être compris en 0 et 1 (1=100%)");
+                }
+                // Calcul du salaire mensuel = salaire fixe + pourcentage du CA + indemnité repas
+                float sMensuel = this.salaireFixe + pourcentage * this.CAMensuel.get(mois) + this.zoneRepresentant.getIndemniteRepas();
+                return sMensuel;
 	}
 
 	@Override
