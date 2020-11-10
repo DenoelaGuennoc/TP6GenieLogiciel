@@ -83,5 +83,52 @@ public class TestRepresentant {
 
 	}
 	
-	
+        @Test
+	public void testMoisNegatif() {
+            try {
+                //On donne un mois négatif
+                //On s'attend à une exception
+                r.enregistrerCA(-3, 1000);
+                fail("Un mois négatif doit gérérer une exception");
+            }
+            catch (IllegalArgumentException e) {
+            }
+        }
+        
+        @Test
+	public void testMoisTropGrand() {
+            try {
+                //On donne un mois >11
+                //On s'attend à une exception
+                r.enregistrerCA(15, 1000);
+                fail("Un mois supérieur à 11 doit gérérer une exception");
+            }
+            catch (IllegalArgumentException e) {
+            }
+        }
+        
+        @Test
+	public void testPourcentageNegatif() {
+            try {
+                //On donne un pourcentage négatif
+                //On s'attend à une exception
+                r.salaireMensuel(0, -3);
+                fail("Un pourcentage négatif doit gérérer une exception");
+            }
+            catch (IllegalArgumentException e) {
+            }
+        }
+        
+        @Test
+	public void testPourcentageTropGrand() {
+            try {
+                //On donne un pourcentage >1
+                //On s'attend à une exception
+                r.salaireMensuel(0, 1.2f);
+                fail("Un pourcentage >1 doit gérérer une exception");
+            }
+            catch (IllegalArgumentException e) {
+            }
+        }
+        
 }
